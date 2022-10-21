@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Star Admin2</title>
+  <title>Aplikasi Perpustakaan</title>
 
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/feather/feather.css">
@@ -76,15 +76,15 @@
           </li>
           <li class="nav-item nav-category">Master Data</li>
           <li class="nav-item">
-            <a class="nav-link" href="../atk/atk.php">
+            <a class="nav-link" href="../buku/buku.php">
               <i class="mdi mdi-lead-pencil menu-icon"></i>
-              <span class="menu-title">ATK</span>
+              <span class="menu-title">Buku</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../jenisAtk/jenisAtk.php">
+            <a class="nav-link" href="../jenisBuku/jenisBuku.php">
               <i class="mdi mdi-shape menu-icon"></i>
-              <span class="menu-title">Jenis ATK</span>
+              <span class="menu-title">Jenis Buku</span>
             </a>
           </li>
           <li class="nav-item">

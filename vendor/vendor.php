@@ -1,88 +1,54 @@
 <?php include '../layout/header.php';?>
 
-<?php
-    if (isset($_GET['id'])) {
-      $id = $_GET['id'];
-      deletedata($id);
-    }
-
-    function deletedata($id)
-    {
-      $file = fopen("../assets/vendor.txt", "r");
-      $temp = fopen("../assets/temp.txt", "w");
-
-      while (!feof($file)) {
-        $line = fgets($file);
-        $data = explode("|", $line);
-        if ($data[0] != $id) {
-          fwrite($temp, $line);
-        }
-      }
-      fclose($file);
-      fclose($temp);
-
-      unlink("../assets/vendor.txt");
-      rename("../assets/temp.txt", "../assets/vendor.txt");
-      
-      header("Location: vendor.php");
-    }
-  ?>
-
 <div class="content-wrapper">
-          <div class="row">
+  <div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Data Vendor</h4>
+          <a href="create.php"><button class="btn btn-primary">Tambah</button></a><br><br>
+          <button class="btn btn-default" onclick="search()" name="print">Print</button>
+          <div class="table-responsive">
+            <table id="example2" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Vendor</th>
+                  <th>Alamat Vendor</th>
+                  <th>Nomor Telepon</th>
+                  <th>Email Vendor</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
 
-<div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Data Vendor ATK</h4>
-
-                  <a href="create.php"><button class="btn btn-primary">Tambah</button></a><br><br>
-                  
-                  <div class="table-responsive">
-                    <table id="example2" class="table table-bordered table-striped">
-                <thead>
+              <tbody>
+                <?php 
+                  include '../koneksi.php';
+                  $no = 1;
+                  $data = mysqli_query($koneksi,"SELECT * FROM vendor");
+                  while($d = mysqli_fetch_array($data)) {
+                ?>
                   <tr>
-                    <th>Id Vendor</th>
-                    <th>Nama Vendor</th>
-                    <th>Alamat Vendor</th>
-                    <th>No telpon</th>
-                    <th>Email</th>
-                    <th>Action</th>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $d['nama']; ?></td>
+                    <td><?php echo $d['alamat']; ?></td>
+                    <td><?php echo $d['telp']; ?></td>
+                    <td><?php echo $d['email']; ?></td>
+                    <td>
+                      <a href="edit.php?id=<?php echo $d['id']; ?>"><button class="btn btn-warning">Edit</button></a>
+                      <a href="hapus.php?id=<?php echo $d['id']; ?>"><button class="btn btn-danger">Hapus</button></a>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    $handle = fopen("../assets/vendor.txt", "r");
-
-                    if ($handle) {
-                      while (($line = fgets($handle)) !== false) {
-                        $data = explode("|", $line);
-
-                        if ((!($data[0] < 2)) || ($data[0] == 1)) {
-                          echo '
-                            <tr>
-                              <td>' . $data[0] . '</td>
-                              <td>' . $data[1] . '</td> 
-                              <td>' . $data[2] . '</td>
-                              <td>' . $data[3] . '</td>
-                              <td>' . $data[4] . '</td>
-                              <td><a href="edit.php?id=' . $data[0] . '"><button class="btn btn-warning">Edit</button></a>  <a href="?id=' . $data[0] . '"><button class="btn btn-danger">Hapus</button></a></td>
-                          </tr>';
-                        }
-                      }
-
-                      fclose($handle);
-                    } else {
-                      echo "Error: File not found";
-                    }
-                  ?>
-                </tbody>
-              </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+                <?php 
+                  }
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
 
 <?php include '../layout/footer.php';?>

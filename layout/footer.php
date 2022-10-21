@@ -39,7 +39,18 @@
   <script type="text/javascript">
     $(document).ready(function () {
       $('#example2').DataTable();
-  });
+    });
+
+    function search() {
+      var query = $('.dataTables_filter input').val();
+      console.log(query);
+      var data = {
+        "search" : query
+      };
+
+      $.post("pdf.php", data);
+      window.location.href = "pdf.php?search=" + query;
+    }
   </script>
   <!-- End custom js for this page-->
 </body>

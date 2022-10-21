@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Star Admin2</title>
+  <title>Aplikasi Perpustakaan</title>
 
   <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/feather/feather.css">
@@ -29,62 +29,47 @@
 </head>
 <body>
   <?php
-    function jumlahATK()
+    function jumlahBuku()
     {
-      $file = fopen("assets/atk.txt", "r");
-      $id = 0;
+      include 'koneksi.php';
+      $no = 0;
+      $data = mysqli_query($koneksi, "SELECT * FROM buku");
 
-      if (!('' == file_get_contents("assets/atk.txt"))) {
-        if ($file) {
-          while (($line = fgets($file)) !== false) {
-            $id = $id + 1;
-          }
-
-          echo $id;
-        }
-      } else {
-        echo $id;
+      while($d = mysqli_fetch_array($data)) {
+        $no++;
       }
+
+      echo $no;
     }
   ?>
 
   <?php
-    function jumlahJenisATK()
+    function jumlahJenisBuku()
     {
-      $file = fopen("assets/jenisatk.txt", "r");
-      $id = 0;
+      include 'koneksi.php';
+      $no = 0;
+      $data = mysqli_query($koneksi, "SELECT * FROM jenis_buku");
 
-      if (!('' == file_get_contents("assets/jenisatk.txt"))) {
-        if ($file) {
-          while (($line = fgets($file)) !== false) {
-            $id = $id + 1;
-          }
-
-          echo $id;
-        }
-      } else {
-        echo $id;
+      while($d = mysqli_fetch_array($data)) {
+        $no++;
       }
+
+      echo $no;
     }
   ?>
 
   <?php
     function jumlahVendor()
     {
-      $file = fopen("assets/vendor.txt", "r");
-      $id = 0;
+      include 'koneksi.php';
+      $no = 0;
+      $data = mysqli_query($koneksi, "SELECT * FROM vendor");
 
-      if (!('' == file_get_contents("assets/vendor.txt"))) {
-        if ($file) {
-          while (($line = fgets($file)) !== false) {
-            $id = $id + 1;
-          }
-
-          echo $id;
-        }
-      } else {
-        echo $id;
+      while($d = mysqli_fetch_array($data)) {
+        $no++;
       }
+
+      echo $no;
     }
   ?>
 
@@ -132,15 +117,15 @@
           </li>
           <li class="nav-item nav-category">Master Data</li>
           <li class="nav-item">
-            <a class="nav-link" href="atk/atk.php">
-              <i class="mdi mdi-lead-pencil menu-icon"></i>
-              <span class="menu-title">ATK</span>
+            <a class="nav-link" href="buku/buku.php">
+              <i class="mdi mdi-book menu-icon"></i>
+              <span class="menu-title">Buku</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="jenisAtk/jenisAtk.php">
+            <a class="nav-link" href="jenisBuku/jenisBuku.php">
               <i class="mdi mdi-shape menu-icon"></i>
-              <span class="menu-title">Jenis ATK</span>
+              <span class="menu-title">Jenis Buku</span>
             </a>
           </li>
           <li class="nav-item">
@@ -164,12 +149,12 @@
                       <div class="col-sm-12">
                         <div class="statistics-details d-flex align-items-center justify-content-between">
                           <div>
-                            <p class="statistics-title">Data ATK</p>
-                            <h3 class="rate-percentage"><?php echo jumlahATK() ?></h3>
+                            <p class="statistics-title">Data Buku</p>
+                            <h3 class="rate-percentage"><?php echo jumlahBuku() ?></h3>
                           </div>
                           <div>
-                            <p class="statistics-title">Data Jenis ATK</p>
-                            <h3 class="rate-percentage"><?php echo jumlahJenisATK() ?></h3>
+                            <p class="statistics-title">Data Jenis Buku</p>
+                            <h3 class="rate-percentage"><?php echo jumlahJenisBuku() ?></h3>
                           </div>
                           <div>
                             <p class="statistics-title">Data Vendor</p>
@@ -186,16 +171,25 @@
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
                           </div>
+
                           <div class="carousel-inner">
                             <div class="carousel-item active">
-                              <img src="https://momsmag.rahetbally.com/wp-content/uploads/2020/04/stationary-1-e1586214600288-1280x720.jpg" class="d-block w-100 h-50" alt="...">
+                              <img src="https://wallpaperaccess.com/full/253332.jpg" class="d-block w-100 h-50" alt="...">
                             </div>
                             <div class="carousel-item">
-                              <img src="https://assets.architecturaldigest.in/photos/600843e0c97b1bbecb2025f2/16:9/w_1280,c_limit/stationery-products-accessories-1366x768.jpg" class="d-block w-100" alt="...">
+                              <img src="https://images6.alphacoders.com/306/306638.jpg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                              <img src="https://www.thepackagingcompany.us/knowledge-sharing/wp-content/uploads/sites/2/2020/09/3-Tips-to-Safely-Securely-Package-Stationery-Items-e1600338768449-1280x720.jpg" class="d-block w-100" alt="...">
+                              <img src="https://images.wallpaperscraft.com/image/single/library_style_table_books_wooden_39317_1920x1080.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                              <img src="https://theteethbeneath.files.wordpress.com/2015/02/beautiful-library-wallpaper-44313-45432-hd-wallpapers.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                              <img src="https://cf-images.us-east-1.prod.boltdns.net/v1/static/3281700261001/695c379f-2c5d-462c-bb75-c59ab1d7ef8d/aed1aca1-2dd5-40b2-bdf3-c7c2101601e4/1920x1080/match/image.jpg" class="d-block w-100" alt="...">
                             </div>
                           </div>
                           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
